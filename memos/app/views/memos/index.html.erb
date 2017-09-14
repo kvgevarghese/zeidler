@@ -1,0 +1,36 @@
+<% provide(:page_memo,"All Memo") %>
+<p id="notice"><%= notice %></p>
+
+<h1>Memos</h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Country</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Last updated</th>
+      <th>Memo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @memos.each do |memo| %>
+      <tr>
+        <td><%= country_by_name(memo.try(:country)) %></td>
+        <td><%= memo.try(:name) %></td>
+        <td><%= memo.try(:description) %></td>
+        <td><%= memo.try(:updated_at).try(:strftime,"%m/%d/%Y - %I:%M%p")   %></td>
+        <td><%= link_to "#{file_name(memo.memo_url)}", memo.memo_url, :target=>"_blank" %></td>
+        <td><%= link_to 'Show', memo %></td>
+        <td><%= link_to 'Edit', edit_memo_path(memo) %></td>
+        <td><%= link_to 'Destroy', memo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Memo', new_memo_path %>

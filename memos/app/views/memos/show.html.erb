@@ -1,0 +1,23 @@
+<% provide(:page_memo,"Show Memo") %>
+<p id="notice"><%= notice %></p>
+<p>
+<strong>Memo:</strong>
+<%= link_to "#{file_name(@memo.memo_url)}", @memo.memo_url, :target=>"_blank" %>
+</p>
+<p>
+  <strong>Country:</strong>
+  <%= country_by_name(@memo.country) %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @memo.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @memo.description %>
+</p>
+
+<%= link_to 'Edit', edit_memo_path(@memo) %> |
+<%= link_to 'Back', memos_path %>
